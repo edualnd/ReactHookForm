@@ -1,4 +1,4 @@
-@import "tailwindcss" source(none);
+@import "tailwindcss";
 @source "../src";
 @import "tw-animate-css";
 
@@ -41,45 +41,53 @@
   --radius: 0.75rem;
 
   /* React Hook Form palette */
-  --pink: #EC5990;
-  --pink-glow: #F47BA8;
+  --pink: #ec5990;
+  --pink-glow: #f47ba8;
   --deep: #081229;
   --deep-2: #050b1a;
 
   --background: #081229;
-  --foreground: #FFFFFF;
+  --foreground: #ffffff;
 
   --card: #0f1c3a;
-  --card-foreground: #FFFFFF;
+  --card-foreground: #ffffff;
   --popover: #0f1c3a;
-  --popover-foreground: #FFFFFF;
+  --popover-foreground: #ffffff;
 
-  --primary: #EC5990;
-  --primary-foreground: #FFFFFF;
+  --primary: #ec5990;
+  --primary-foreground: #ffffff;
   --secondary: #15244a;
-  --secondary-foreground: #FFFFFF;
+  --secondary-foreground: #ffffff;
   --muted: #15244a;
   --muted-foreground: #94a3b8;
   --accent: #1a2c54;
-  --accent-foreground: #FFFFFF;
+  --accent-foreground: #ffffff;
   --destructive: #ef4444;
-  --destructive-foreground: #FFFFFF;
-  --border: rgba(255, 255, 255, 0.10);
+  --destructive-foreground: #ffffff;
+  --border: rgba(255, 255, 255, 0.1);
   --input: rgba(255, 255, 255, 0.12);
-  --ring: #EC5990;
+  --ring: #ec5990;
 
   --code-bg: #050b1a;
 
   --gradient-hero: radial-gradient(ellipse at top, #16244a 0%, #081229 60%);
-  --gradient-pink: linear-gradient(135deg, #EC5990, #F47BA8);
+  --gradient-pink: linear-gradient(135deg, #ec5990, #f47ba8);
   --shadow-glow: 0 20px 60px -20px rgba(236, 89, 144, 0.55);
 }
 
-.dark { color-scheme: dark; }
+.dark {
+  color-scheme: dark;
+}
 
 @layer base {
-  * { border-color: var(--color-border); }
-  html, body, #root { height: 100%; }
+  * {
+    border-color: var(--color-border);
+  }
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
   body {
     background: var(--background);
     color: var(--color-foreground);

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Check, Copy } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cn } from "./../../lib/utils.ts";
 
 type Token = { text: string; cls?: string };
 
@@ -31,12 +31,15 @@ function tokenize(line: string): Token[] {
     /(\/\/.*$)|("(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*'|`(?:[^`\\]|\\.)*`)|(\b\d+(?:\.\d+)?\b)|([A-Za-z_$][A-Za-z0-9_$]*)|(\s+)|([^\s\w])/g;
   let m: RegExpExecArray | null;
   while ((m = regex.exec(line))) {
-    if (m[1]) tokens.push({ text: m[1], cls: "text-muted-foreground/70 italic" });
+    if (m[1])
+      tokens.push({ text: m[1], cls: "text-muted-foreground/70 italic" });
     else if (m[2]) tokens.push({ text: m[2], cls: "text-emerald-300" });
     else if (m[3]) tokens.push({ text: m[3], cls: "text-amber-300" });
     else if (m[4]) {
-      if (KEYWORDS.has(m[4])) tokens.push({ text: m[4], cls: "text-pink font-semibold" });
-      else if (/^[A-Z]/.test(m[4])) tokens.push({ text: m[4], cls: "text-cyan-300" });
+      if (KEYWORDS.has(m[4]))
+        tokens.push({ text: m[4], cls: "text-pink font-semibold" });
+      else if (/^[A-Z]/.test(m[4]))
+        tokens.push({ text: m[4], cls: "text-cyan-300" });
       else tokens.push({ text: m[4], cls: "text-foreground" });
     } else if (m[5]) tokens.push({ text: m[5] });
     else if (m[6]) tokens.push({ text: m[6], cls: "text-pink-glow" });
@@ -85,7 +88,11 @@ export function CodeBlock({
             onClick={copy}
             className="flex items-center gap-1 rounded-md px-2 py-1 text-xs text-muted-foreground transition hover:bg-white/5 hover:text-foreground"
           >
-            {copied ? <Check className="size-3.5" /> : <Copy className="size-3.5" />}
+            {copied ? (
+              <Check className="size-3.5" />
+            ) : (
+              <Copy className="size-3.5" />
+            )}
             {copied ? "Copiado" : "Copiar"}
           </button>
         )}

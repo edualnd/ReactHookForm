@@ -1,9 +1,8 @@
 import { SlideShell } from "../SlideShell";
 import { CodeBlock } from "../CodeBlock";
-import { FormDemo } from "./FormDemo";
+
 
 const code = `import { useForm } from "react-hook-form";
-import { FormDemo } from './FormDemo';
 
 export function SignupForm() {
   const {
