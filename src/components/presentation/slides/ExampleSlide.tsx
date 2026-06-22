@@ -78,19 +78,7 @@ export function ExampleSlide() {
       }
     >
       <div className="grid h-full gap-6 ">
-        {/* <div className="flex flex-col justify-center gap-3">
-          {[
-            { k: "useForm", d: "Inicializa o formulário" },
-            { k: "register", d: "Registra cada input" },
-            { k: "handleSubmit", d: "Dispara o envio validado" },
-            { k: "errors", d: "Mostra mensagens" },
-          ].map((it) => (
-            <div key={it.k} className="rounded-xl border border-border/60 bg-card/60 p-4">
-              <p className="font-mono text-sm font-bold text-pink">{it.k}</p>
-              <p className="text-xs text-muted-foreground">{it.d}</p>
-            </div>
-          ))}
-        </div> */}
+      
 
         <CodeBlock code={code} language="jsx" className="text-xs" />
       </div>

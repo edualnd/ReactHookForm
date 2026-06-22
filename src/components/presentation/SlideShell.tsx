@@ -16,7 +16,7 @@ export function SlideShell({
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -24 }}
       transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-      className="mx-auto flex h-full w-full max-w-7xl flex-col justify-center px-6 py-12 md:px-12 lg:px-16"
+      className="mx-auto flex h-full w-full max-w-[88rem] flex-col justify-center px-4 py-8 md:px-6 lg:px-8"
     >
       {kicker && (
         <div className="mb-4 flex items-center gap-3">

@@ -10,6 +10,7 @@ import { ConceptsSlide } from "./slides/ConceptsSlide";
 import { ExampleSlide } from "./slides/ExampleSlide";
 import { DemoSlide } from "./slides/DemoSlide";
 import { AdvantagesSlide } from "./slides/AdvantagesSlide";
+import { CodingSlide } from "./slides/CodingSlide";
 
 const slides = [
   { id: "intro", title: "Introdução", Comp: IntroSlide },
@@ -20,6 +21,7 @@ const slides = [
   { id: "concepts", title: "Conceitos", Comp: ConceptsSlide },
   { id: "example", title: "Exemplo", Comp: ExampleSlide },
   { id: "demo", title: "Demo", Comp: DemoSlide },
+  { id: "codando", title: "Codando", Comp: CodingSlide },
   { id: "advantages", title: "Vantagens", Comp: AdvantagesSlide },
 ];
 
@@ -27,25 +29,28 @@ export function Presentation() {
   const [index, setIndex] = useState(0);
   const [overview, setOverview] = useState(false);
 
-  const next = useCallback(() => setIndex((i) => Math.min(i + 1, slides.length - 1)), []);
+  const next = useCallback(
+    () => setIndex((i) => Math.min(i + 1, slides.length - 1)),
+    [],
+  );
   const prev = useCallback(() => setIndex((i) => Math.max(i - 1, 0)), []);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       const tag = (e.target as HTMLElement)?.tagName;
       if (tag === "INPUT" || tag === "TEXTAREA") return;
-      if (e.key === "ArrowRight" || e.key === " ") next();
+      if (e.key === "ArrowRight") next();
       else if (e.key === "ArrowLeft") prev();
-      else if (e.key === "Escape") setOverview(false);
       else if (e.key.toLowerCase() === "g") setOverview((v) => !v);
-      else if (e.key.toLowerCase() === "f") document.documentElement.requestFullscreen?.();
+      else if (e.key.toLowerCase() === "f")
+        document.documentElement.requestFullscreen?.();
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [next, prev]);
 
   const Current = slides[index].Comp;
-
+  
   return (
     <div className="bg-hero relative flex h-screen w-screen flex-col overflow-hidden">
       <div className="pointer-events-none absolute -top-32 right-0 size-[40rem] rounded-full bg-pink/10 blur-3xl" />
@@ -70,7 +75,9 @@ export function Presentation() {
               key={s.id}
               onClick={() => setIndex(i)}
               className={`h-1.5 rounded-full transition-all ${
-                i === index ? "w-8 bg-pink" : "w-3 bg-muted-foreground/30 hover:bg-muted-foreground/60"
+                i === index
+                  ? "w-8 bg-pink"
+                  : "w-3 bg-muted-foreground/30 hover:bg-muted-foreground/60"
               }`}
               aria-label={s.title}
             />
@@ -79,7 +86,8 @@ export function Presentation() {
 
         <div className="flex items-center gap-2">
           <span className="text-xs text-muted-foreground">
-            {String(index + 1).padStart(2, "0")} / {String(slides.length).padStart(2, "0")}
+            {String(index + 1).padStart(2, "0")} /{" "}
+            {String(slides.length).padStart(2, "0")}
           </span>
           <button
             onClick={() => setOverview((v) => !v)}
@@ -98,7 +106,7 @@ export function Presentation() {
         </div>
       </header>
 
-      <main className="relative z-10 flex-1 overflow-hidden">
+      <main className="relative z-10 flex-1 overflow-y-auto">
         <AnimatePresence mode="wait">
           <div key={slides[index].id} className="h-full">
             <Current />
@@ -144,7 +152,9 @@ export function Presentation() {
                     setOverview(false);
                   }}
                   className={`aspect-video rounded-xl border p-4 text-left transition hover:border-pink ${
-                    i === index ? "border-pink bg-pink/10" : "border-border/60 bg-card/40"
+                    i === index
+                      ? "border-pink bg-pink/10"
+                      : "border-border/60 bg-card/40"
                   }`}
                 >
                   <p className="text-xs text-muted-foreground">
